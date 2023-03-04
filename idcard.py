@@ -1,18 +1,20 @@
-from PIL import Image
-import os
+from PIL import Image, ImageDraw
+import os 
+# Baca desain idcard dari file
+img = Image.open('desain_idcard.png')
 
-# Buka gambar desain id card
-desain = Image.open("desain_idcard.png")
+# Loop untuk setiap siswa
+for nama_file in ['amanda.png', 'ryan.png', 'arab.png']:
+    # Baca barcode dari file
+    barcode_img = Image.open(nama_file)
 
-# Buka gambar barcode
-barcode = Image.open("barcode_siswa1.png")
+    # Tentukan koordinat x dan y untuk menempelkan barcode pada desain idcard
+    x = 100
+    y = 200
 
-# Tentukan lokasi di mana barcode akan ditempelkan pada desain
-x = 100
-y = 200
+    # Tempelkan barcode pada desain idcard
+    img.paste(barcode_img, (x, y))
 
-# Tempelkan barcode pada desain
-desain.paste(barcode, (x, y))
-
-# Simpan gambar hasil penggabungan barcode dan desain
-desain.save("idcard_siswa1.png")
+    # Simpan hasilnya dengan nama file yang sesuai
+    nama_idcard_file = nama_file.split('.')[0] + '_idcard.png'
+    img.save(nama_idcard_file)
