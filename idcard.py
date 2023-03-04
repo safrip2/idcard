@@ -61,7 +61,7 @@ for barcode_file in os.listdir(barcode_folder):
     draw.text(text_position, nama_siswa, font=font, fill=text_color)
     
     # Simpan gambar idcard yang sudah ditambahkan barcode dan nama siswa
-    idcard.save(f"F:/KULIAH UNS/Lab/POSI/idcard praktikan/Output/{nama_siswa}_idcard.png")
+    idcard.save(f"F:/KULIAH UNS/Lab/POSI/idcard/output/{nama_siswa}_idcard.png")
     
     # Hapus gambar barcode dari memori agar tidak menghabiskan memori
     del barcode
