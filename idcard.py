@@ -37,34 +37,32 @@ for barcode_file in os.listdir(barcode_folder):
         words[-1] = new_initials
         nama_siswa = ' '.join(words)
     
-    # Baca gambar barcode
+    # Read barcode
     barcode_path = os.path.join(barcode_folder, barcode_file)
     barcode = Image.open(barcode_path)
 
     # Resize gambar barcode agar sesuai dengan ukuran yang diinginkan
     barcode = barcode.resize((330, 330))
     
-    # Letakkan gambar barcode pada gambar idcard
+    # Place barcode
     idcard.paste(barcode, (154, 192))
     
-    # Buat objek draw untuk menulis teks pada gambar idcard
+    # init variabel draw
     draw = ImageDraw.Draw(idcard)
-    
-    # Hitung ukuran teks
+
     text_width, text_height = draw.textsize(nama_siswa, font=font)
     
-    # Tentukan posisi teks
+    # Text position
     idcard_width, idcard_height = idcard.size
     text_position = ((idcard_width - text_width) / 2, 633)
     
-    # Tulis nama siswa pada gambar idcard
+    # Draw text name
     draw.text(text_position, nama_siswa, font=font, fill=text_color)
     
-    # Simpan gambar idcard yang sudah ditambahkan barcode dan nama siswa
+    # Save idcard
     idcard.save(f"F:/KULIAH UNS/Lab/POSI/idcard/output/{nama_siswa}_idcard.png")
     
-    # Hapus gambar barcode dari memori agar tidak menghabiskan memori
     del barcode
 
-    # Setel ulang gambar idcard
+    # Reset Process
     idcard = Image.open(idcard_image)
