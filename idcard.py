@@ -5,7 +5,7 @@ idcard = Image.open("desain_idcard.png")
 
 # Get the barcode filenames
 import os
-barcode_folder = "path/to/barcode/folder" # Ganti dengan path ke folder barcode di komputermu
+barcode_folder = "F:/KULIAH UNS/Lab/POSI/idcard/barcode"
 barcode_filenames = os.listdir(barcode_folder)
 
 # Loop through the barcode filenames
