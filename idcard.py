@@ -1,17 +1,16 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-# Open Resource
-barcode_folder = "F:/KULIAH UNS/Lab/POSI/idcard/barcode"
-idcard_image = "F:/KULIAH UNS/Lab/POSI/idcard/desain_idcard.png"
+# Lokasi folder barcode dan gambar idcard
+barcode_folder = "/path/to/barcode/folder"
+idcard_image = "/path/to/idcard/image"
 
 # Ukuran dan letak teks nama siswa pada idcard
 text_size = 50
 text_color = (255, 255, 255)  # warna teks (putih)
-text_position = (50, 50)  # koordinat letak teks (x, y)
 
 # Buat objek font untuk menulis teks
-font = ImageFont.truetype("Poppins-Medium.ttf", text_size)
+font = ImageFont.truetype("arial.ttf", text_size)
 
 # Baca gambar idcard
 idcard = Image.open(idcard_image)
@@ -33,6 +32,13 @@ for barcode_file in os.listdir(barcode_folder):
     
     # Buat objek draw untuk menulis teks pada gambar idcard
     draw = ImageDraw.Draw(idcard)
+    
+    # Hitung ukuran teks
+    text_width, text_height = draw.textsize(nama_siswa, font=font)
+    
+    # Tentukan posisi teks
+    idcard_width, idcard_height = idcard.size
+    text_position = ((idcard_width - text_width) / 2, 500)
     
     # Tulis nama siswa pada gambar idcard
     draw.text(text_position, nama_siswa, font=font, fill=text_color)
